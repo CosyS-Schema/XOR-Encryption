@@ -92,10 +92,10 @@ class Scratch3YourExtension {
      *  this will be called when the block is used
      */
     xorEncrypt ({ text, secretKey }) {
-        let encryptedText = '';
-        for (let i = 0; i < text.length; i++) {
-            const charCode = text.charCodeAt(i);
-            const encryptedCharCode = charCode ^ secretKey;
+        var encryptedText = '';
+        for (var i = 0; i < text.length; i++) {
+            var charCode = text.charCodeAt(i);
+            var encryptedCharCode = charCode ^ secretKey;
             encryptedText += String.fromCharCode(encryptedCharCode);
         }
         return encryptedText;
