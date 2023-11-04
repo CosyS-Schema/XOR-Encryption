@@ -86,17 +86,28 @@ class Scratch3YourExtension {
         };
     }
 
-
     /**
      * implementation of the block with the opcode that matches this name
      *  this will be called when the block is used
      */
     xorEncrypt ({ text, secretKey }) {
         var encryptedText = '';
-        for (var i = 0; i < text.length; i++) {
-            var charCode = text.charCodeAt(i);
-            var encryptedCharCode = charCode ^ secretKey;
-            encryptedText += String.fromCharCode(encryptedCharCode);
+        while (secretKey.length < text.length) {
+            secretKey += secretKey;
+        }
+        for(var i=0; i<text.length; i++) {
+            var value1 = text[i].charCodeAt(0);
+            var value2 = secretKey[i].charCodeAt(0);
+
+            var xorValue = value1 ^ value2;
+
+            var xorValueAsHexString = xorValue.toString("16");
+
+            if (xorValueAsHexString.length < 2) {
+                xorValueAsHexString = "0" + xorValueAsHexString;
+            }
+
+            encryptedText += xorValueAsHexString;
         }
         return encryptedText;
     }
